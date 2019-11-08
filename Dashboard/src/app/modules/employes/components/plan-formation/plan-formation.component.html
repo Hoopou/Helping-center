@@ -1,0 +1,44 @@
+
+
+<div class="card">
+    <div class="card-header d-flex">
+      <h5>Plan formation</h5>
+  
+    </div>
+    <div class="card-body">
+      <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+        <strong>{{alert.title}}: </strong> {{alert.msg}}
+      </alert>
+      <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+        <strong>{{alert.title}}: </strong> {{alert.msg}}
+      </alert>
+  
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col" style="width: 14%;">
+                <div class="container">
+                    Formation Plan
+                </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>  
+          <tr>
+            <th scope="row">qwe</th>
+            <td>qe</td>
+            <td>q</td>
+            <td>q</td>
+            <td>q</td>
+            <td>q</td>
+          </tr>
+        </tbody>
+      </table>
+  
+    </div>
+  </div>

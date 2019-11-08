@@ -1,0 +1,22 @@
+<div class="row">
+    <div *ngFor="let image of pictureArray; let i = index" class="col-md-3 card-wrapper">
+        <div class="card">
+            <button *ngIf="pictureArray[i]" class="btn btn-link delete-btn" type="button" (click)="delete(i)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+
+            <div class="card-body img-preview-container" [class.placeholder]="!pictureArray[i]" (click)="imageInput.click()">
+                <div *ngIf="pictureArray[i]" class="img-preview"
+                    [ngStyle]="{'background-image': 'url('+ pictureArray[i].src + ')'}">
+                </div>
+            </div>
+
+            <div class="card-text text-center berga-green" >
+                <label class="btn d-block mb-0" style="cursor: pointer;">
+                    <span class="img-title" [title]="getName(i)">{{getName(i)}}</span>
+                    <input #imageInput type="file" accept="image/*" (click)="imageInput.value = null" (change)="processFile(imageInput, i);">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

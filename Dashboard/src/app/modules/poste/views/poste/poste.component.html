@@ -1,0 +1,55 @@
+<div *ngIf="loading">
+  Loading...
+  <app-loading></app-loading>
+</div>
+
+<div class="card" *ngIf="!loading">
+  <div class="card-header d-flex">
+    <h5>Postes</h5>
+
+  </div>
+  <div class="card-body">
+    <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+    <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-end w-100">
+      <button type="button" class="btn btn-primary mt-auto" (click)="new()">
+        New Poste
+      </button>
+    </div>
+
+    <ng-select bindLabel="name" placeholder="Choose a state" style="display: inline-block; width: 15em;"
+      [items]="tableFilter" [searchable]="true" [clearable]="true" [multiple]="false" [(ngModel)]="selectedTableFilter"
+      (change)="applyFilter()">
+    </ng-select>
+
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">
+            Etat
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr (click)="choosePoste(poste)" *ngFor="let poste of postes ; let i = index">
+          <th scope="row">{{poste.id}}</th>
+          <td>{{poste.titre}}</td>
+          <td>{{poste.etat['nomEtat']}}</td>
+        </tr>
+
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

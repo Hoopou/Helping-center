@@ -1,0 +1,50 @@
+<div class="alert alert-danger" role="alert" *ngIf="ServerDeconected">
+  Server is deconnected - Try again later
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="ZohoOppIdInvalid">
+  Your Zoho potential id is invalid
+</div>
+
+<div class="loading" *ngIf="!FinishLoading">
+  <app-loading class="fa-5x"></app-loading>
+</div>
+
+<div class="alert alert-warning" role="alert" *ngIf="NoEmails">
+  No Emails for this Potential!
+</div>
+
+<div class="card" *ngIf="!ZohoOppIdInvalid && !ServerDeconected && FinishLoading && !NoEmails">
+  <h5 class="card-header">{{opps.oppNo}}</h5>
+    <div class="container-fluid">
+      <div class="emails-content">
+        <h3>Preview email</h3>
+        <div class="scrollbar" data-spy="scroll" data-target=".navbar" data-offset="0">
+          <app-template-email [currentMail]="CurrentMail"></app-template-email>
+        </div>
+      </div>
+      <div class="navigation">
+        <h3>Offres({{opps.emails.length}})</h3>
+        <div class="btn-group-custom" class="scrollbar" data-spy="scroll" data-target=".navbar" data-offset="0">
+          <div class="nav-button-container" *ngFor="let offer of opps.emails">
+            <button
+              class="btn btn-outline-info nav-button {{ CurrentMail.id == offer.id ? 'active' : ''}}"
+              (click)="changementCourriel(offer.id)">
+              <app-offer-tile [offer]="offer" (onlanguagechange)="changerLangue(offer.id, $event)"></app-offer-tile>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3 class="btn-form">Images</h3>
+    <div class="img-scrollbar d-flex" data-spy="scroll">
+      <div class="image-container">
+        <div class="p-2 image">PICTURE</div>
+      </div>
+    </div>
+  <div class="d-flex">
+    <button type="button" class="mr-auto p-2 btn btn-danger btn-form cancel" >Cancel</button>
+    <button type="button" class="p-2 btn btn-success btn-form envoyer" >Send</button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+
+$emailPreviewWidth: 70%;
+
+*:not(i) {
+    color: rgb(17, 17, 17); 
+}
+
+.email-card > p{
+    line-height: 50%;
+}
+
+.dropdown-menu{
+    position: absolute; 
+    left:5em;
+}
+
+.dropdown-menu *{
+    padding: 0.2em;
+}
+
+.dropdown-menu:hover *:hover{
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.selected{
+    background-color: #63c2de;
+}

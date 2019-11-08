@@ -1,0 +1,78 @@
+@import "scss/_variables.scss";
+
+$main-color: $bergaGreen;
+$transitionTime: 0.3s;
+
+.berga-green {
+    background-color: $bergaGreen;
+    transition: background-color $transitionTime ease-in-out;
+    &:hover {
+        background-color: lighten($bergaGreen, 10%);
+    }
+}
+
+.card-wrapper {
+    max-width: 180px;
+
+    .card {
+        &:hover {
+            .delete-btn{
+                visibility: visible;
+                opacity: 1;
+            }
+            .img-preview-container.placeholder:before {
+                opacity: 0.75;
+            }
+        }
+
+        .delete-btn {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity $transitionTime ease-in-out;
+        
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            position: absolute;
+            z-index: 100;
+            right: 0;      
+        }
+
+        .img-title {
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+        }
+        input {
+            display: none;
+        }
+    
+        .img-preview-container {
+            background-color: #f7f7f7;
+            cursor: pointer;
+            padding:0;
+            height: 125px;
+
+            &.placeholder:before {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.25;
+                transition: opacity $transitionTime ease-in-out;
+                
+                font-size: 2.5em;
+                content: '\f067';
+                font-family: "FontAwesome";
+            }
+        
+            .img-preview {
+                background: center center no-repeat;
+                background-size: contain;
+                height: 125px;
+                width: 100%;
+            }
+        }
+    }
+}

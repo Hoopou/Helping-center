@@ -1,0 +1,14 @@
+{
+    "salut les amis": "hello friends",
+    "intro_salutation": "Bonjour {{name}},",
+    "description_introduction": "Voici le détail de l'opportunité que j'ai présentement",
+    "description": "Description :",
+    "grade": "Grade :",
+    "related_picture": "Voir les photos en attachements du produit.",
+    "website": "www.bergarecycling.com",
+    "phone_number": "514-469-1654",
+    "tankyou": "Merci",
+    "feedback": "Tu peux répondre à ce courriel ou communiquer avec moi !",
+    "conclusion": "Au plaisir d'avoir de tes nouvelles,",
+    "fax_number": "579-637-1682"
+}

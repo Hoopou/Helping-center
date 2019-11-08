@@ -1,0 +1,66 @@
+<div *ngIf="loading">
+  Loading...
+  <app-loading></app-loading>
+</div>
+
+<div class="modal fade" class="show" tabindex="-1" role="dialog" *ngIf="!loading">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{poste.titre}}</h4>
+      </div>
+      <div class="modal-body">
+
+        <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+          <strong>{{alert.title}}: </strong> {{alert.msg}}
+        </alert>
+        <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+          <strong>{{alert.title}}: </strong> {{alert.msg}}
+        </alert>
+
+        
+
+        <div class="table-bordered d-flex flex-wrap justify-content-start container">
+          <table class="table table-side-striped">
+            <tbody style="min-width: 100%">
+              <tr>
+                <th>Id</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="true" type="number" class="form-control" [(ngModel)]="poste.id">
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Title</th>
+                <td>
+                  <span class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="poste.titre">
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Etat</th>
+                <td>                  
+                    <ng-select bindLabel="nomEtat" placeholder="Choose a state"
+                      bindValue="" [items]="etats" [searchable]="true" [clearable]="true" [disabled]="false"
+                      [multiple]="false" [(ngModel)]="poste.etat">
+                    </ng-select>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" (click)="close()" [disabled] = "requestSent">Close</button>
+        <button type="button" class="btn btn-primary" (click)="save()" [disabled] = "requestSent">
+            Save changes
+            <app-loading *ngIf="requestSent"></app-loading>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

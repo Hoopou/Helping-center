@@ -1,0 +1,58 @@
+interface NavAttributes {
+  [propName: string]: any;
+}
+interface NavWrapper {
+  attributes: NavAttributes;
+  element: string;
+}
+interface NavBadge {
+  text: string;
+  variant: string;
+}
+interface NavLabel {
+  class?: string;
+  variant: string;
+}
+
+export interface NavData {
+  name?: string;
+  url?: string;
+  icon?: string;
+  badge?: NavBadge;
+  title?: boolean;
+  children?: NavData[];
+  variant?: string;
+  attributes?: NavAttributes;
+  divider?: boolean;
+  class?: string;
+  label?: NavLabel;
+  wrapper?: NavWrapper;
+}
+
+export const navItems: NavData[] = [
+  // {
+  //   name: 'Aide',
+  //   url: '/ignite',
+  //   icon: 'berga-icon ignite',
+  // },
+  {
+    name: 'Formations',
+    url: '/formations',
+    icon: 'fa fa-calculator',
+  },
+  {
+    name: 'Employe',
+    url: '/employes',
+    icon: 'fa fa-user-circle-o',
+  },
+  {
+    name: 'Postes',
+    url: '/postes',
+    icon: 'fa fa-wrench',
+  },
+  {
+    name: 'Settings',
+    url: '/settings',
+    icon: 'fa fa-cog',
+  }
+];

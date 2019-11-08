@@ -1,0 +1,12 @@
+<fieldset class="form-group">
+  <ng-select
+    #ngSelect
+    [placeholder]="'Choose a ' + label"
+    [items]="items"
+    (open)="open()"
+    (search)="checkTerm($event)"
+    (change)="updateModel($event)"
+    [(ngModel)]="model"
+  >
+  </ng-select>
+</fieldset>

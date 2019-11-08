@@ -1,0 +1,17 @@
+.app-body {
+    background-image: url('../../../../../../src/assets/img/background_form.jpg');
+    background-repeat: none;
+    background-size: cover;
+}
+
+@media (max-width: 991.98px){
+    .app-body {
+        padding-top: 55px;
+        margin-top: 0;
+    }
+}
+
+.logo {
+    height: 30px;
+    vertical-align: baseline;
+}

@@ -1,0 +1,75 @@
+$transitionTime: 0.3s;
+
+.table{
+  width: auto;
+  min-width: 300px;
+}
+.table-responsive {
+  width: auto;
+  overflow-x: inherit;
+  .rmv-btn {
+    background-color: transparent;
+    border: none;
+  }
+
+  .th{
+    min-width: 150px;
+  }
+  
+  td {
+    padding: 0.2em;
+    vertical-align: middle;
+  }
+}
+.add-column {
+  min-width: 358px;
+  cursor: pointer;
+  background-color: transparent;
+  color: lightgray;
+  transition: border ease-in-out $transitionTime; 
+  vertical-align: middle;
+
+  
+  p{
+    align-items: center;
+    margin-top:50%;
+    margin-bottom:50%;
+    font-family: "FontAwesome";
+    font-weight: bold;
+    font-size: 3.5em;
+    transition: color ease-in-out $transitionTime;        
+  }
+  &:hover {
+    border: 1px solid gray;
+
+    &:before {
+      color: gray;
+    }
+  }
+}
+.card-header{
+  h5 {
+    line-height: 35px;
+  }
+}
+
+.input-group-append {
+  select {
+    background-color: #f0f3f5;
+  }
+}
+
+input {
+  min-width: 50px;
+}
+
+
+
+
+
+.table.table-hover{
+  width: 100%;
+  :hover{
+    cursor: pointer;
+  }
+}

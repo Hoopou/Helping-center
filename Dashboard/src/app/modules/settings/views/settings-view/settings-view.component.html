@@ -1,0 +1,48 @@
+<div class="card" id="card-container">
+  <h5 class="card-header">Settings</h5>
+    <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+    <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+  <div class="row" style="max-height: inherit">
+    <div class="col-9">
+      <a *ngFor="let setting of settings" id="box" (click)="editapp(setting.value)">
+        <div class="appButton card border-success">
+          <div class="card-body">
+            <h5 class="card-title">{{setting.name}}</h5>
+            <!-- <h6 class="status-deconnecte">Deconnected</h6> -->
+            <button class="btn btn-primary " (click)="editapp(setting.value)">Edit</button>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3 border border-secondary row" style="max-height: 40em; overflow-y: scroll;"
+      *ngIf="currentapp != null">
+      <div class="card" style="width: 100%; align-items: center">
+        <h5>
+          {{currentapp}}
+        </h5>
+      </div>
+      <table class="table table-striped ">
+        <tbody>
+          <tr *ngFor="let item of getList(); let i = index">
+            <td class="col" style="width:100%">
+              <input class="form-control" style="display: inline-block; width: 70%; max-width: 70%; min-width: 50%"
+                type="text" (input)="valuechange(item, $event.target.value)" [ngModel]="getValue(item)">
+              <div style="display: inline;min-width:23%;max-width: 27%;">
+                <button type="button" class="btn btn-primary btn-circle" (click)="saveItem(item)"
+                  *ngIf="item.isEditing"><i class="fa fa-save"></i></button>
+                <button type="button" class="btn btn-success btn-circle" (click)="addItem()"><i
+                    class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-danger btn-circle" (click)="removeItem(item, i)"><i
+                    class="fa fa-minus"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

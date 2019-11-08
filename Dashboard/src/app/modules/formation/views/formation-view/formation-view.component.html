@@ -1,0 +1,196 @@
+<div class="card">
+  <div class="card-header d-flex">
+    <h5>Formations</h5>
+
+  </div>
+  <div class="card-body">
+    <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+    <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+    <div class="table-bordered d-flex flex-wrap justify-content-start" *ngIf="loading">
+      <table class="table table-side-striped table-responsive " *ngFor="let formation of data; let i = index">
+        <tbody>
+          <tr>
+            <th class="rmv-btn">
+              <span class="sr-only">Action bar</span>
+            </th>
+            <td class="text-right rmv-btn d-flex">
+              <div class="container d-flex justify-content-start">
+                <button *ngIf="isEditing(i)" type="button" class="p-2 btn btn-success mt-auto "
+                  (click)="save(i)">Save</button>
+                <button *ngIf="!isEditing(i)" type="button" class="btn btn-primary" (click)="edit(i)">Edit</button>
+              </div>
+              <div class="container d-flex justify-content-end">
+                <button *ngIf="formation.isEditing && !formation.wantsRemove" class="p-2 btn btn-danger mt-auto"
+                  type="button" (click)="wantsRemove(i)">Remove</button>
+                <button *ngIf="formation.isEditing && formation.wantsRemove" class="p-2 btn btn-primary mt-auto"
+                  type="button" (click)="cancelRemoving(i)">cancel</button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="formation.wantsRemove">
+            <th></th>
+            <td>
+              <div class="alert alert-primary" role="alert">
+                Do you really want to remove this formation?
+                <button class="btn btn-danger" type="button" (click)="remove(i)">Remove</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Title</th>
+            <td>
+              <span class="input-group">
+                <input [disabled]="!formation.isEditing" type="text" class="form-control" [(ngModel)]="formation.titre">
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>Number</th>
+            <td>
+              <span class="input-group">
+                <input [disabled]="!formation.isEditing" type="text" class="form-control" [(ngModel)]="formation.numero"
+                  maxlength="50" />
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Category</th>
+            <td>
+              <ng-select *ngIf="formation.isEditing" bindLabel="nom" placeholder="Choose a category" bindValue="nom"
+                [items]="categorieFormation" [searchable]="true" [clearable]="true" [disabled]="false"
+                [multiple]="false" [(ngModel)]="formation.categorieFormation['nom']">
+              </ng-select>
+              <input class="form-control" ng-value="formation.categorieFormation.nom" type="text"
+                *ngIf="!formation.isEditing" [disabled]="true" [ngModel]="formation.categorieFormation['nom']">
+
+            </td>
+          </tr>
+          <!-- <tr>
+            <th>Formation date</th>
+            <td>
+              <span class="input-group">
+                <input class="form-control" type="date" [ngModel]="formation.debutFormation | date:'yyyy-MM-dd'"
+                  [disabled]="!formation.isEditing">
+              </span>
+            </td>
+          </tr> -->
+          <tr>
+            <th>Frequency(days)</th>
+            <td>
+              <span class="input-group">
+                <ng-select style="flex: 1 1 auto" *ngIf="formation.isEditing" bindLabel="temps"
+                  placeholder="Choose a frequency" bindValue="temps" [items]="frequenceFormation" [searchable]="true"
+                  [clearable]="true" [disabled]="false" [multiple]="false"
+                  [(ngModel)]="formation.frequenceFormation.temps">
+                </ng-select>
+                <input class="form-control" ng-value="formation.frequenceFormation.temps" type="text"
+                  *ngIf="!formation.isEditing" [disabled]="true" [ngModel]="formation.frequenceFormation.temps">
+                <div class="input-group-append">
+                  <!-- <span class="input-group-text">h</span> -->
+                  <span class="input-group-append">
+                    <select class="form-control" [disabled]="!formation.isEditing">
+                      <option value="days" selected>days</option>
+                    </select>
+                  </span>
+                </div>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>Notification(days before due)</th>
+            <td>
+              <span class="input-group">
+                <ng-select style="flex: 1 1 auto" *ngIf="formation.isEditing" bindLabel="temps"
+                  placeholder="Choose a frequency" bindValue="temps" [items]="frequenceFormation" [searchable]="true"
+                  [clearable]="true" [disabled]="false" [multiple]="false"
+                  [(ngModel)]="formation.rappelFormation.temps">
+                </ng-select>
+                <input class="form-control" ng-value="formation.rappelFormation.temps" type="text"
+                  *ngIf="!formation.isEditing" [disabled]="true" [ngModel]="formation.rappelFormation.temps">
+                <div class="input-group-append">
+                  <!-- <span class="input-group-text">h</span> -->
+                  <span class="input-group-append">
+                    <select class="form-control" [disabled]="!formation.isEditing">
+                      <option value="days" selected>days</option>
+                    </select>
+                  </span>
+                </div>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Type
+            </th>
+            <td>
+              <ng-select *ngIf="formation.isEditing" bindLabel="nom" placeholder="Choose a modality" bindValue="nom"
+                [items]="typeFormation" [searchable]="true" [clearable]="true" [disabled]="false" [multiple]="false"
+                [(ngModel)]="formation.typeFormation.nom">
+              </ng-select>
+              <input class="form-control" ng-value="formation.typeFormation.nom" type="text"
+                *ngIf="!formation.isEditing" [disabled]="true" [ngModel]="formation.typeFormation.nom">
+            </td>
+          </tr>
+          <tr>
+            <th>State</th>
+            <td>
+              <ng-select *ngIf="formation.isEditing" bindLabel="nom" placeholder="Choose a state" bindValue="nom"
+                [items]="statusFormation" [searchable]="true" [clearable]="true" [disabled]="false" [multiple]="false"
+                [(ngModel)]="formation.statusFormation['nom']">
+              </ng-select>
+              <input class="form-control" ng-value="formation.statusFormation['nom']" type="text"
+                *ngIf="!formation.isEditing" [disabled]="true" [ngModel]="formation.statusFormation['nom']">
+            </td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>
+              <span class="input-group">
+                <input type="number" [disabled]="!formation.isEditing" class="form-control"
+                  [(ngModel)]="formation.duree_Seconde" appTwoDigitDecimaNumber>
+                <div class="input-group-append">
+                  <!-- <span class="input-group-text">h</span> -->
+                  <span class="input-group-append">
+                    <select class="form-control" [disabled]="!formation.isEditing">
+                      <option value="m" selected>Min</option>
+                    </select>
+                  </span>
+                </div>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>Activated/Deactivated</th>
+            <td>
+              <ng-select *ngIf="formation.isEditing" bindLabel="nomEtat" placeholder="Choose a state"
+                bindValue="nomEtat" [items]="etatsFormation" [searchable]="true" [clearable]="true" [disabled]="false"
+                [multiple]="false" [(ngModel)]="formation.etat.nomEtat">
+              </ng-select>
+              <input class="form-control" ng-value="formation.etat.nomEtat" type="text" *ngIf="!formation.isEditing"
+                [disabled]="true" [ngModel]="formation.etat.nomEtat">
+            </td>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td>
+              <span class="input-group">
+                <textarea [disabled]="!formation.isEditing" class="form-control"
+                  [(ngModel)]="formation.remarques"></textarea>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="table-bordered add-column text-center" (click)="addColumn()">
+        <p>&#xFF0B;</p>
+      </div>
+    </div>
+  </div>
+</div>

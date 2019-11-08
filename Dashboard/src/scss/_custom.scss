@@ -1,0 +1,6 @@
+// Here you can add other styles
+.table-side-striped {
+  td:nth-child(even) {
+    background-color: $table-accent-bg; //this variable is from bootstrap
+  }
+}

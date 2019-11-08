@@ -1,0 +1,157 @@
+<div>
+  <p class="m-0"><b>To:</b> {{currentMail.to.email}}</p>
+  <p class="m-0"><b>From:</b> {{currentMail.fromEmail}}</p>
+  <p class="m-0"><b>Subject:</b> Nouvelle opportunité de Berga <b>:</b> [{{currentMail.offerName}}]
+    {{currentMail.potential.title}}</p>
+</div>
+<table cellpadding="0" cellspacing="0" width="100%"
+  style="width: 100%; border: 0px; border-collapse: collapse; letter-spacing: 0.5px; text-rendering: optimizeLegibility; background-color: rgb(255, 255, 255)">
+  <tbody>
+    <tr>
+      <td align="center" style="border: 0px; padding-top: 10px; padding-bottom: 20px">
+        <table cellpadding="0" cellspacing="0" width="600"
+          style="min-width: 600px; max-width: 600px; width: 600px; border: 0px; border-collapse: collapse; table-layout: fixed; background-color: rgba(217, 217, 217, 0.15)">
+          <tbody>
+            <tr>
+              <td valign="top" width="600" style="width: 600px; border: 0px; min-height: 570px; word-wrap: break-word">
+                <table cellspacing="0" cellpadding="0"
+                  style="min-width: 100%; max-width: 100%; table-layout: fixed; border: 0px; border-collapse: collapse"
+                  width="100%">
+                  <tbody>
+                    <tr>
+                      <td valign="top" style="border: 0px">
+                        <table title="" cellspacing="0" cellpadding="0"
+                          style="text-rendering: optimizeLegibility; font-size: 13px; letter-spacing: 0.5px; font-family: Arial; min-width: 100%; max-width: 100%; table-layout: fixed; border: 0px; border-collapse: collapse; background-color: rgba(0, 0, 0, 0)"
+                          width="100%">
+                          <tbody>
+                            <tr>
+                              <td
+                                style="word-wrap: break-word; border: 0px; padding: 6px 30px; border-top: 0px none rgb(17, 17, 17); border-bottom: 0px none rgb(17, 17, 17)">
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2" translate="intro_salutation"
+                                    [translateParams]="{name: currentMail.to.firstName}"></font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2"><br /></font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2">{{currentMail.customMessage}}</font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2"><br /></font>
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="border: 0px">
+                        <table title="" cellspacing="0" cellpadding="0"
+                          style="text-rendering: optimizeLegibility; font-size: 13px; letter-spacing: 0.5px; font-family: Arial; min-width: 100%; max-width: 100%; table-layout: fixed; border: 0px; border-collapse: collapse; background-color: rgba(0, 0, 0, 0)"
+                          width="100%">
+                          <tbody>
+                            <tr>
+                              <td
+                                style="word-wrap: break-word; border: 0px; padding: 6px 30px; border-top: 0px none rgb(17, 17, 17); border-bottom: 0px none rgb(17, 17, 17)">
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2" translate="description_introduction"></font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2"><br /></font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <pre
+                                    style="border:0px; background-color: rgba(0, 0, 0, 0)"><font size="2">{{'description'| translate}}<br /><div *ngFor="let lang of currentMail.potential.descriptions"><p *ngIf="lang.language == currentMail.language">{{lang.description}}</p></div>{{'grade'| translate}} {{currentMail.potential.dategory}}</font></pre>
+                                  <p style="padding: 0px; margin: 0px"><br /></p>
+                                  <p style="padding: 0px; margin: 0px"><br /></p>
+                                  <p style="padding: 0px; margin: 0px">{{'related_picture' | translate}}</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="border: 0px">
+                        <table title="" cellspacing="0" cellpadding="0"
+                          style="text-rendering: optimizeLegibility; font-size: 13px; letter-spacing: 0.5px; font-family: Arial; min-width: 100%; max-width: 100%; table-layout: fixed; border: 0px; border-collapse: collapse; background-color: rgba(0, 0, 0, 0)"
+                          width="100%">
+                          <tbody>
+                            <tr>
+                              <td
+                                style="word-wrap: break-word; border: 0px; padding: 6px 30px; border-top: 0px none rgb(17, 17, 17); border-bottom: 0px none rgb(17, 17, 17)">
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2">{{'feedback' | translate}}
+                                  </font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2"><br /></font>
+                                </p>
+                                <p style="padding: 0px; margin: 0px">
+                                  <font size="2">{{'conclusion' | translate}}</font>
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="border: 0px">
+                        <table title="" cellspacing="0" cellpadding="0"
+                          style="text-rendering: optimizeLegibility; font-size: 13px; letter-spacing: 0.5px; font-family: Arial; min-width: 100%; max-width: 100%; table-layout: fixed; border: 0px; border-collapse: collapse; background-color: rgba(0, 0, 0, 0)"
+                          width="100%">
+                          <tbody>
+                            <tr>
+                              <td
+                                style="word-wrap: break-word; border: 0px; padding: 6px 30px; border-top: 0px none rgb(17, 17, 17); border-bottom: 0px none rgb(17, 17, 17)">
+                                <p style="padding: 0px; margin: 0px">
+                                  <span style="font-size: small">
+                                    <p class="MsoNormal"><b><span
+                                          style="font-size: 12pt; color: rgb(21, 48, 64)">{{'tankyou' | translate}}
+                                          !</span></b><span style="font-size: 12pt"></span></p>
+                                    <p class="MsoNormal"><span><a href="http://www.bergarecycling.com"><img
+                                            src="http://www.berga.co/email/LogoBergaRecycling.png" height="71"
+                                            width="200" style="height: 71px; width: 200px" /></a></span>
+                                      <font size="1.5"><b><span><br /></span></b>
+                                        <font color="#666666"><img border="0" width="17" height="17"
+                                            src="http://www.berga.co/email/phone-icon.png"
+                                            style="height: 17px; width: 17px" /><b>{{'phone_number' | translate}}</b>&nbsp;&nbsp;<img
+                                            border="0" width="16" height="16"
+                                            src="http://www.berga.co/email/fax-icon.png"
+                                            style="height: 16px; width: 16px" />&nbsp;</font><b>
+                                          <font color="#666666">{{'fax_number' | translate}}</font><br />
+                                        </b><img border="0" width="16" height="16"
+                                          src="http://www.berga.co/email/www-icon.gif"
+                                          style="height: 0.166in; width: 0.166in" />
+                                      </font><b><span lang="EN-US"><a href="http://www.bergarecycling.com/"
+                                            target="_blank">
+                                            <font size="1.5" color="#666666">{{'website' | translate}}</font>
+                                          </a></span><br /></b><img border="0" width="200" height="11"
+                                        src="http://www.berga.co/email/BergaLigneEmail.png" alt="bg-ligne"
+                                        style="color: rgb(191, 191, 191); font-size: 9pt; height: 0.114in; width: 2.083in" /><br /><a
+                                        href="http://www.bergarecycling.com/"><img
+                                          src="http://www.berga.co/email/footer_Berga2017.png"
+                                          style="height: 112px; width: 204px" /></a><br />
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom: 12pt"><span lang="EN-US"
+                                        style="font-size: 9pt; color: rgb(191, 191, 191)"></span></p>
+                                  </span>&nbsp;&nbsp;<br /></p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

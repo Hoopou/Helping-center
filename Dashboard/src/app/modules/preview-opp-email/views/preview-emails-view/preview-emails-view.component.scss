@@ -1,0 +1,101 @@
+
+$emailPreviewWidth: 70%;
+
+.loading{
+    display: block; 
+    position: absolute; 
+    top:50%; 
+    left:50%; 
+    width: 100%;
+}
+
+.scrollbar {
+    overflow-y: scroll;
+    height: 40em;
+}
+
+.container-fluid{
+    padding-left: 1.5em;
+    display: inline-flex;
+}
+
+.navigation{
+    display: inline-block;
+    padding-left: 1em;
+    width: 100-$emailPreviewWidth;
+}
+
+.emails-content{
+    display: inline-block;
+    width: $emailPreviewWidth;
+}
+
+h3{
+    padding-bottom: 0.5em; 
+}
+
+.btn-outline:active {
+    background-color: #8bc9db;    
+    border-color: #63c2de;
+}
+
+.btn-group-custom{
+    position: relative;
+    overflow-y: scroll;
+}
+
+.nav-button-container{
+    width: 75%;
+    padding: 0.3em;
+}
+
+.nav-button{
+    width: 100%;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 0.90em;
+}
+
+.btn-form{
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.btn-form > .envoyer{
+    display: flex-end;
+}
+
+.btn-form > .cancel{
+    display: flex-start
+}
+
+.selected{
+    background-color: #63c2de;
+}
+
+.img-scrollbar{
+    overflow-x: scroll;
+}
+
+.image-container{    
+    justify-content: center;   
+    display: flex;
+    margin-top: 0;
+    margin-right: 6em;
+    margin-left: 6em;
+    margin-bottom: 2em;
+    height: 100%;
+    width: 100%;
+    background-color:rgba(217, 217, 217, 0.562); 
+}
+
+.image{
+    width: 10em; 
+    height: 10em; 
+    background-color: red; 
+    text-align: center; 
+    margin: 1em;
+}

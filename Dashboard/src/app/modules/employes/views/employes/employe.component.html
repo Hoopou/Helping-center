@@ -1,0 +1,59 @@
+
+
+<div class="card">
+  <div class="card-header d-flex">
+    <h5>Employes</h5>
+
+  </div>
+  <div class="card-body">
+    <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+    <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+      <strong>{{alert.title}}: </strong> {{alert.msg}}
+    </alert>
+
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-end w-100">
+      <button type="button" class="btn btn-primary mt-auto" (click)="new()">
+        New employe
+      </button>
+    </div>
+
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Supervisor</th>
+          <th scope="col" style="width: 14%;">
+              <div class="container">
+                  Formation Plan
+              </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr (click)="chooseEmploye(i)" *ngFor="let employe of employes ; let i = index">
+          <th scope="row">{{employe.id}}</th>
+          <td>{{employe.prenom}}</td>
+          <td>{{employe.nom}}</td>
+          <td>{{employe.courriel}}</td>
+          <td class="right">{{employe.categorieEmploye.titrePoste == 'Superviseur'}}</td>
+          <td>
+            <div class="container text-right" >
+              <button type="button" style="min-width: 5em;" class="btn btn-primary w-50" (click)="awdawd()">Modify <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

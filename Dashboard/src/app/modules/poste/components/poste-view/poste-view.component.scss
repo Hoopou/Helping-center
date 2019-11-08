@@ -1,0 +1,30 @@
+.modal.show {
+    display:block;
+    overflow-y: inherit;
+  }
+
+  .table-responsive{
+      display: inline;
+  }
+
+  table{
+    width: 100%;
+    margin: 10px;
+    tbody{
+        display: inline-table;
+    }
+    th{
+      min-width: 20%;
+      width: 20%;
+    }
+    td {
+        min-width: 20%;
+        width: 100%;
+        padding: 0.2em;
+        vertical-align: middle;
+    }
+  }
+
+  .modal-body{
+      min-width: 90%;
+  }

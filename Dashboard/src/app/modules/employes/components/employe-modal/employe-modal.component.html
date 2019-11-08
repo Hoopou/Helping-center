@@ -1,0 +1,321 @@
+<div class="modal fade show" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{employe.prenom}} {{employe.nom}} - {{employe.courriel}}</h4>
+      </div>
+      <div class="modal-body">
+
+        <alert *ngFor="let alert of error" [type]="'danger'" [dismissible]="true" [dismissOnTimeout]="10000">
+          <strong>{{alert.title}}: </strong> {{alert.msg}}
+        </alert>
+        <alert *ngFor="let alert of message" [type]="'success'" [dismissible]="true" [dismissOnTimeout]="5000">
+          <strong>{{alert.title}}: </strong> {{alert.msg}}
+        </alert>
+
+
+        <div [formGroup]="savingForm" class="table-bordered d-flex flex-wrap justify-content-start container">
+          <table class="table table-side-striped table-responsive">
+            <tbody style="min-width: 100%">
+              <tr>
+                <th>Id</th>
+                <td>
+                  <span class="input">
+                    <input type="number" class="form-control" [(ngModel)]="employe.id" formControlName="id"
+                      [disabled]="true">
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Number</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control" formControlName="number"
+                      maxlength="10" oninput="this.value = this.value.toUpperCase()" [(ngModel)]="employe.numero"
+                      [ngClass]="{'is-valid': (savingForm.get('number').touched || savingForm.get('number').dirty) && (savingForm.get('number').valid),               
+                                  'is-invalid': (savingForm.get('number').touched || savingForm.get('number').dirty) && (!savingForm.get('number').valid )}" />
+                  </span>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('number').touched || savingForm.get('number').dirty) && savingForm.get('number').errors">
+                    <span *ngIf="savingForm.get('number').errors['required']">
+                      <small class="text-muted">
+                        Number is required.
+                      </small>
+                    </span>
+
+                    <span *ngIf="savingForm.get('number').errors['pattern']">
+                      <small class="text-muted">
+                        Number must be only compose of letters or digit
+                      </small>
+                    </span>
+                  </span>
+
+                </td>
+              </tr>
+
+              <tr>
+                <th>First name</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control" [(ngModel)]="employe.prenom"
+                      formControlName="firstname"
+                      [ngClass]="{'is-valid': (savingForm.get('firstname').touched || savingForm.get('firstname').dirty) && (savingForm.get('firstname').valid),               
+                                  'is-invalid': (savingForm.get('firstname').touched || savingForm.get('firstname').dirty) && (!savingForm.get('firstname').valid )}" />
+                  </span>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('firstname').touched ||  savingForm.get('firstname').dirty) && savingForm.get('firstname').errors">
+                    <span *ngIf="savingForm.get('firstname').errors['required']">
+                      <small class="text-muted">
+                        First name is required.
+                      </small>
+                    </span>
+                    <span *ngIf="savingForm.get('firstname').errors['pattern']">
+                      <small class="text-muted">
+                        Some characters are invalid.
+                      </small>
+                    </span>
+                  </span>
+
+                </td>
+              </tr>
+
+              <tr>
+                <th>Last name</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control" [(ngModel)]="employe.nom"
+                      formControlName="lastname"
+                      [ngClass]="{'is-valid': (savingForm.get('lastname').touched || savingForm.get('lastname').dirty) && (savingForm.get('lastname').valid),               
+                                'is-invalid': (savingForm.get('lastname').touched || savingForm.get('lastname').dirty) && (!savingForm.get('lastname').valid )}" />
+                  </span>
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('lastname').touched || savingForm.get('lastname').dirty) && savingForm.get('lastname').errors">
+                    <span *ngIf="savingForm.get('lastname').errors['required']">
+                      <small class="text-muted">
+                        Last name is required.
+                      </small>
+                    </span>
+                    <span *ngIf="savingForm.get('lastname').errors['pattern']">
+                      <small class="text-muted">
+                        Some characters are invalid.
+                      </small>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Civility</th>
+                <td>
+                  <select class="form-control" formControlName="civilite" [(ngModel)]="employe.civilite['nom']"
+                    [ngClass]="{'is-valid': (savingForm.get('civilite').touched || savingForm.get('civilite').dirty) && (savingForm.get('civilite').valid),               
+                                'is-invalid': (savingForm.get('civilite').touched || savingForm.get('civilite').dirty) && (!savingForm.get('civilite').valid )}">
+                    <option value="" selected disabled hidden>Please select a civility</option>
+                    <option *ngFor="let civilite of civilities" [value]="civilite.nom">{{civilite.nom}}</option>
+                  </select>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('civilite').touched || savingForm.get('civilite').dirty) && savingForm.get('civilite').errors">
+                    <span *ngIf="savingForm.get('civilite').errors['required']">
+                      <small class="text-muted">
+                        Please select a civility
+                      </small>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Language</th>
+                <td>
+                  <select class="form-control" placeholder="Choose a language" formControlName="language"
+                    [(ngModel)]="employe.langueEmploye['nom']"
+                    [ngClass]="{'is-valid': (savingForm.get('language').touched || savingForm.get('language').dirty) && (savingForm.get('language').valid),               
+                                'is-invalid': (savingForm.get('language').touched || savingForm.get('language').dirty) && (!savingForm.get('language').valid )}">
+                    <option value="" selected disabled hidden>Please select a language</option>
+                    <option *ngFor="let language of languages" [value]="language.nom">{{language.nom}}</option>
+                  </select>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('language').touched || savingForm.get('language').dirty) && savingForm.get('language').errors">
+                    <span *ngIf="savingForm.get('language').errors['required']">
+                      <small class="text-muted">
+                        Please select a language
+                      </small>
+                    </span>
+                  </span>
+
+                </td>
+              </tr>
+
+              <tr>
+                <th>Email</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control" formControlName="email"
+                      [(ngModel)]="employe.courriel"
+                      [ngClass]="{'is-valid': (savingForm.get('email').touched || savingForm.get('email').dirty) && (savingForm.get('email').valid),               
+                                  'is-invalid': (savingForm.get('email').touched || savingForm.get('email').dirty) && (!savingForm.get('email').valid )}">
+                  </span>
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('email').touched || savingForm.get('email').dirty) && savingForm.get('email').errors">
+                    <span *ngIf="savingForm.get('email').errors['required']">
+                      <small class="text-muted">
+                        email is required.
+                      </small>
+                    </span>
+                    <span *ngIf="savingForm.get('email').errors['email']">
+                      <small class="text-muted">
+                        Not a valid email
+                      </small>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Phone number</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control" formControlName="phone"
+                      [(ngModel)]="employe.cellulaire" [ngClass]="{'is-valid': (savingForm.get('phone').valid && !savingForm.get('phone').pristine),               
+                                  'is-invalid': (savingForm.get('phone').dirty) && (!savingForm.get('phone').valid )}">
+                  </span>
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('phone').touched ||savingForm.get('phone').dirty) && savingForm.get('phone').errors">
+                    <span *ngIf="savingForm.get('phone').errors['pattern']">
+                      <small class="text-muted">
+                        Not a valid phone number
+                      </small>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>State</th>
+                <td>
+                  <select class="form-control" placeholder="Choose a state" formControlName="state"
+                    [(ngModel)]="employe.etat['nomEtat']"
+                    [ngClass]="{'is-valid': (savingForm.get('state').touched || savingForm.get('state').dirty) && (savingForm.get('state').valid),               
+                                  'is-invalid': (savingForm.get('state').touched || savingForm.get('state').dirty) && (!savingForm.get('state').valid )}">
+                    <option value="" selected disabled hidden>Please select a state</option>
+                    <option *ngFor="let state of etats" [value]="state.nomEtat">{{state.nomEtat}}</option>
+                  </select>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('state').touched || savingForm.get('state').dirty) && savingForm.get('state').errors">
+                    <span *ngIf="savingForm.get('state').errors['required']">
+                      <small class="text-muted">
+                        Please select a state
+                      </small>
+                    </span>
+                  </span>
+
+                </td>
+              </tr>
+
+              <tr>
+                <th>Grade</th>
+                <td>
+                  <select class="form-control" placeholder="Choose a grade" formControlName="grade"
+                    [(ngModel)]="employe.categorieEmploye['titrePoste']"
+                    [ngClass]="{'is-valid': (savingForm.get('grade').touched || savingForm.get('grade').dirty) && (savingForm.get('grade').valid),               
+                                    'is-invalid': (savingForm.get('grade').touched || savingForm.get('grade').dirty) && (!savingForm.get('grade').valid )}">
+                    <option value="" selected disabled hidden>
+                      Please select a grade
+                    </option>
+                    <option *ngFor="let grade of categorieEmployes" [value]="grade.titrePoste">{{grade.titrePoste}}
+                    </option>
+                  </select>
+
+                  <span class="form-text"
+                    *ngIf="(savingForm.get('grade').touched || savingForm.get('grade').dirty) && savingForm.get('grade').errors">
+                    <span *ngIf="savingForm.get('grade').errors">
+                      <small class="text-muted">
+                        Please select a grade
+                      </small>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+
+
+              <!-- <tr>
+                <th>Supervisor</th>
+                <td>
+                    <select class="form-control"
+                    [(ngModel)]="employe.superviseur['prenom']"
+                    formControlName="superviseur">
+                      <option value="">Please select a supervisor</option>
+                      <option *ngFor="let superviseur of superviseurs" [value]="superviseur.prenom">{{superviseur.prenom}}</option>
+                    </select>
+                </td>
+              </tr> -->
+
+              <tr>
+                <th>Notes</th>
+                <td>
+                  <span class="input-group">
+                    <textarea [disabled]="!employe.isEditing" class="form-control" formControlName="notes"
+                      [(ngModel)]="employe.infoSupplementaire"></textarea>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Formation</th>
+                <td>
+                  <span>                      
+                    <ng-select bindLabel="titre" placeholder="Formations" bindValue="" [items]="formations" (change)="addFormation($event)"
+                      [searchable]="true" [multiple]="false" [(ngModel)]="selectionnedFormation">
+                    </ng-select>
+                    <div class="customlistcontainer">
+                    </div>
+                      <div class="customlistvalue" *ngFor="let item of employeFormations">
+                        <span aria-hidden="true" class="remove-icon left" (click)="removeFormation(item.id)">×</span>
+                        <span class="value-label">{{item.titre}}</span>
+                        
+                      </div>
+                  </span>
+                  <!-- <ng-select [items]="formations" [(ngModel)]="employeFormations">
+                      <ng-option *ngFor="let formation of formations" [value]="formation">{{formation.titre}}></ng-option>
+                    </ng-select>              -->
+                </td>
+              </tr>
+
+              <tr *ngIf="employe.categorieEmploye.titrePoste == 'Superviseur'">
+                <th>Username</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="text" class="form-control"
+                      [(ngModel)]="utilisateur['username']" formControlName="username">
+                  </span>
+                </td>
+              </tr>
+
+              <tr *ngIf="employe.categorieEmploye.titrePoste == 'Superviseur'">
+                <th>Password</th>
+                <td>
+                  <span class="input-group">
+                    <input [disabled]="!employe.isEditing" type="password" autocomplete="new-password"
+                      class="form-control" [(ngModel)]="utilisateur['password']" formControlName="password">
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" (click)="onclose()">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!savingForm.valid" (click)="onconfirm()">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>

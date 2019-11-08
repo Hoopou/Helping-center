@@ -1,0 +1,19 @@
+<fieldset class="form-group">
+<ng-select 
+*ngIf="editable"
+
+[bindLabel]="optiontext"
+[bindValue]="bindValue"
+[items]="items"
+[(ngModel)]="model"
+
+[placeholder]="placeholder"
+[searchable]="searchable" 
+[clearable]="clearable"
+[disabled]="disabled"
+[multiple]="multiple"
+ngDefaultControl
+>
+</ng-select>
+<input class="form-control" type="text" *ngIf="!editable" [disabled]="true" [(ngModel)]="model">
+</fieldset>

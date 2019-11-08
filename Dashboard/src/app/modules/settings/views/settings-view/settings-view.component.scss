@@ -1,0 +1,84 @@
+$transitionTime: 0.2s;
+$cardWidth: 15em;
+$titleMaxHeight: 2em;
+
+#card-container{ 
+    display: inline-block;
+    min-width: $cardWidth+5em;
+    width: 100%;
+}
+
+.appButton{
+    display: inline-block;
+    text-align: center;
+    margin: 0.5em; 
+    border-radius: 0.8rem; 
+    transition: $transitionTime ease;
+}
+
+.status-deconnecte{
+    color:red;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.status-success{
+    color:green;
+}
+
+.card-title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: black;
+    height: 2em;
+}
+
+.appButton:hover{
+    border-radius: 1.5em;
+    transition: $transitionTime ease;
+}
+
+.appButton:hover .card-img-top{
+    border-radius: 2.5em; 
+    transition: $transitionTime ease;
+}
+
+.btn-primary{
+    width: 100%;
+    margin-top: 1em;
+}
+
+.card-body{
+    width: $cardWidth;
+}
+
+.btn-circle {
+    width: 28px;
+    height: 28px;
+    padding: 5px 0px;
+    margin: 0;
+    margin-bottom: 2px;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.inline{
+    display: inline-block;
+}
+
+table{
+    width: 100%;
+}
+
+td{
+    padding:2px ; 
+    width: 70%;
+}
+
+.row{
+    padding:0;
+}

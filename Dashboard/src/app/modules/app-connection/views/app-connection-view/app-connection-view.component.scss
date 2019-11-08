@@ -1,0 +1,56 @@
+$transitionTime: 0.2s;
+$cardWidth: 12em;
+$cardHeight: 25em;
+$imgSize: 11.5em;
+
+#card-container{ 
+    display: inline-block;
+    min-width: $cardWidth+5em;
+    width: 100%;
+}
+
+.appButton{
+    display: inline-block;
+    text-align: center;
+    width: $cardWidth;
+    margin: 0.5em; 
+    border-radius: 0.8rem; 
+    transition: $transitionTime ease;
+}
+
+.cardalert{
+    width: $cardWidth*0.95;
+    margin-left: $cardWidth*0.02;
+    transition: 5s ease-in-out ;
+}
+
+.status-deconnecte{
+    color:red;
+}
+
+.status-success{
+    color:green;
+}
+
+.card-title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.card-img-top{
+    margin-bottom: -9%; 
+    border-radius: 1.5em;
+    padding: 0.5em;
+    width: $imgSize;
+    transition: $transitionTime ease;
+}
+
+.appButton:hover{
+    border-radius: 1.5em;
+    transition: $transitionTime ease;
+}
+
+.appButton:hover .card-img-top{
+    border-radius: 2.5em; 
+    transition: $transitionTime ease;
+}

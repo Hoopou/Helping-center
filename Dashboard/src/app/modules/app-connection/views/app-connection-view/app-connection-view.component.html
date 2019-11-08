@@ -1,0 +1,46 @@
+<div class="alert alert-danger" role="alert" *ngIf="apiDeconnected">
+  Server is deconnected - Try again later
+</div>
+
+<div class="card" id="card-container">
+  <h5 class="card-header">Applications</h5>
+
+  <div class="alert alert-danger" role="alert" *ngIf="signoutFailed">
+    Sign-out failed
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="signinFailed">
+    Sign-in failed
+  </div>
+
+
+  <a *ngFor="let app of apps" id="box">
+    <!-- <a *ngFor="let app of apps" > -->
+    <div class="appButton {{app.IsConnected ? 'card border-success' : 'card border-danger'}}">
+      <a href="{{app.WebsiteUrl}}"><img class="card-img-top" src="{{app.IconPath}}" alt="Card image cap"></a>
+      <div class="card-body">
+        <h5 class="card-title">{{app.Name}}</h5>
+        <h6 class="status-deconnecte" *ngIf="!app.IsConnected">Deconnected</h6>
+        <h6 class="status-success" *ngIf="app.IsConnected">Connected</h6>
+
+        <button class="btn btn-primary " *ngIf="!app.IsConnected" (click)="signIn(app.Id)"
+          [disabled]="app.AwaitingToConnect">
+          <i class="fa fa-spinner fa-spin fa-pulse fa-1.5x fa-fw" aria-hidden="true"
+            *ngIf="app.AwaitingToConnect"></i>Connect</button>
+
+        <button class="btn btn-primary" *ngIf="app.IsConnected" (click)="wantsToDeconnect(app.Id)"
+          [disabled]="app.AwaitingToDeconnect">
+          <i class="fa fa-spinner fa-spin fa-pulse fa-1.5x fa-fw" aria-hidden="true"
+            *ngIf="app.AwaitingToDeconnect"></i>Disconnect</button>
+
+      </div>
+      <!-- Button trigger modal -->
+      <i>
+        <div class="alert alert-primary cardalert" role="alert" *ngIf="app.WaitingToConfirm">
+          Do you really want to disconnect?
+          <button type="button" class="btn btn-danger" (click)="signOut(app.Id)">Confirm</button>
+        </div>
+      </i>
+    </div>
+  </a>
+</div>

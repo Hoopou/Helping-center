@@ -1,0 +1,28 @@
+<div class="email-card text-left">
+  <p class="font-weight-bold">Offre - {{offer.potential.title}}</p>
+  <p>{{offer.to.fullName}}</p>
+  <p>{{offer.to.email}}</p>
+  <div *ngIf="offer.customMessage != null" class="email-card text-left">
+    <p class="bold">Message:</p>
+    <p>{{offer.customMessage}}</p>
+  </div>
+  <div>
+    <div class="d-flex flex-row-reverse">
+      <div class="p-2 btn-group" dropdown placement="right">
+        <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+          {{offer.language}}
+          <ul *dropdownMenu class="dropdown-menu " role="menu">
+            <div *ngFor="let lang of translate.getLangs()" (click)="changerLangue(lang)"
+              class="form-check {{offer.language == lang ? 'selected' : ''}}">
+              <label class="form-check-label" for="{{offer.id}}_{{lang}}">
+                <input class="form-check-input invisible" type="radio" name="{{offer.id}}_LanguagesRadio"
+                  id="{{offer.id}}_{{lang}}" value="option1" ng-checked="offer.language == lang" />
+                {{lang}}
+              </label>
+            </div>
+          </ul>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

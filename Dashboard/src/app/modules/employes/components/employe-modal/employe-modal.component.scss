@@ -1,0 +1,62 @@
+.modal.show {
+    display:block;
+    overflow-y: scroll;
+  }
+
+  .table-responsive{
+      display: inline;
+  }
+
+  table{
+    width: 100%;
+    padding: 10px;
+    tbody{
+        display: inline-table;
+    }
+    th{
+      min-width: 20%;
+      width: 20%;
+    }
+    td {
+        min-width: 20%;
+        width: 100%;
+        padding: 0.2em;
+        vertical-align: middle;
+    }
+  }
+
+  .modal-body{
+      min-width: 90%;
+  }
+
+.customlistcontainer{
+ 
+  flex-wrap: wrap;
+  padding-top: 5px;
+  padding-left: 7px;
+
+  display: flex;
+}
+.customlistvalue{
+  white-space: nowrap;
+  font-size: .9em;
+  display: inline;
+  margin: 5px;
+  background-color: #ebf5ff;
+  border-radius: 2px;
+  
+  .remove-icon{
+    border-right: 1px solid #b8dbff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 1px 5px;
+    box-sizing: border-box;
+  }
+  .value-label{
+    white-space: nowrap;
+    display: inline-block;
+    padding: 1px 5px;
+    box-sizing: border-box;
+  }
+}
+  
